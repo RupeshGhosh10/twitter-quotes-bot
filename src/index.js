@@ -1,6 +1,7 @@
 const { TwitterApi } = require('twitter-api-v2');
 const config = require('./config.js');
 const cron = require('node-cron');
+const axios = require('axios');
 
 const main = async () => {
 
@@ -11,8 +12,8 @@ const main = async () => {
     accessSecret: config.ACCESS_SECRET
   });
 
-  const data = await fetch('https://api.quotable.io/random?maxLength=200');
-  const quote = await data.json();
+  const response = await axios.get('https://api.quotable.io/random?maxLength=200');
+  const quote = response.data;
 
   const tweet = `"${quote.content}" -${quote.author}`
 
