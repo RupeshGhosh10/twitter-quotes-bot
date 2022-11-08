@@ -20,6 +20,11 @@ const main = async () => {
 }
 
 cron.schedule('*/1 * * * *', async () => {
-  await main();
-  console.log('Made a tweet');
+  try {
+    await main();
+    console.log('Made a tweet');
+  }
+  catch (e) {
+    console.log(`Failed to tweet: ${e.message}`);
+  }
 });
