@@ -20,7 +20,8 @@ const main = async () => {
   await twitterClient.v1.tweet(tweet);
 }
 
-cron.schedule('*/1 * * * *', async () => {
+cron.schedule('0 */6 * * *', async () => {
+  console.log('Stating cron task');
   try {
     await main();
     console.log('Made a tweet');
